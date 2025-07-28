@@ -270,7 +270,7 @@ We would like to acknowledge the following team members who contributed to the d
 | **Izzat Kawadri**| IOT Developer               | [LinkedIn Profile](https://www.linkedin.com/in/izzat-kawadri) |
 | **Mohammed al Dawaish**| Hardware Developer           | [LinkedIn Profile](https://www.linkedin.com/in/mohammed-aldwaish) |
 | **Obada Tarazi**| Software Developer (Backend) | [LinkedIn Profile](https://www.linkedin.com/in/obada-tarazi) |
-| **Mohammad al Hajjar**| Software Developer (Mobile,Dashboard)  | [LinkedIn Profile](https://www.linkedin.com/in/mohammad-al-hajjar-a9814a264) |
+| **Mohammad al Hajjar**| Software Developer (Mobile,Dashboard)  | [LinkedIn Profile](https://www.linkedin.com/in/mohammad-alhajjar-336a541b3) |
 
 Each team member played a vital role in making the **Fireguard** project a success. Feel free to reach out to them via LinkedIn for more information on their contributions and areas of expertise.
 
