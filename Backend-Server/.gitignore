@@ -1,9 +1,6 @@
 /.env
 /error_log
 /yarn-error.log
-/.env
-/error_log
-/yarn-error.log
 
 ###> symfony/framework-bundle ###
 /.env.local
