@@ -1,0 +1,12 @@
+duplicate_email: .الأيميل مستخدم سابقاً
+duplicate_phone_number: .الرقم مستخدم سابقاً
+duplicate_currency_code: المعرف مستخدم سابقا.
+duplicate_currency_symbol: الرمز مستخدم سابقا.
+min_digits_exceed: .عدد الخانات الرقمية أفل من المتوقع
+max_digits_exceed: .عدد الخانات الرقمية أكثر من المتوقع
+invalid_phone_number: .لا يمكن للرقم أن يحتوي على نص
+invalid_password: .كلمة السر يجب أن تحتوي على رقم واحد على الأقل و حرف صغير على اقل
+duplicate_name: .الاسم مستخدم سابقاً
+duplicate_number_plate:  رقم لوحة السيارة مستخدم سابقا
+duplicate_area_name: عذرا اسم المنقطة مستخدم سابقا
+duplicate_device_name: عذرا اسم الجهاز مستخدم سابقا

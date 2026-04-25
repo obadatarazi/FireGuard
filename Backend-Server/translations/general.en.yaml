@@ -1,0 +1,13 @@
+Gender:
+  Male: Male
+  Female: Female
+
+FireStatus:
+  Completed: Completed
+  OnFire: Onfire
+  InProgress: InProgress
+  Canceled: Canceled
+  
+EmergencyRequestStatus:
+  Dangerous: Dangerous
+  Done: Done

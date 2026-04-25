@@ -1,0 +1,13 @@
+framework:
+  messenger:
+    transports:
+      # https://symfony.com/doc/current/messenger.html#transport-configuration
+      async:
+        dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+        options:
+          auto_setup: false
+          table_name: 'messenger_massage'
+
+    routing:
+      # Route your messages to the transports
+      App\Job\Message\SendEmailMessage: async

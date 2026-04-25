@@ -1,0 +1,25 @@
+match_password: The password does not match.
+incorrect_password: The password is incorrect.
+one_role_group: No item can exist with user or vendor set rights.
+not_found: Unable to find object, make sure that provided id is correct.
+invalid_value: The value provided is invalid.
+  restrict_deletion:Unable to remove this item because it might be used with other data.
+access_denied: Access Denied.
+optimistic_lock_code_error: Sorry, but someone else has already taken this product's codes. Please retry again!
+restrict_deletion: Unable to remove this item because it might be used with other data.
+cannot_deleted_your_account: Unable to remove your account.
+
+#verfiy email
+"%count% year|%count% years": "%count% year | %count% years"
+"%count% month|%count% months": "%count% month | %count% months"
+"%count% day|%count% days": "%count% day | %count% days"
+"%count% hour|%count% hours": "%count% hour | %count% hours"
+"%count% minute|%count% minutes": "%count% minute | %count% minutes"
+
+confirm_my_email: Confirm my Email
+please_confirm_your_email: Hi! Please confirm your email!
+please_confirm_your_email_address-by_clicking_the_following_link: Please confirm your email address by clicking the following link!
+phone_number_not_found: phone number not found.
+admin_access_denied:  Access Denied For Admin.
+account_not_active: Sorry your account is not active please contact the support
+

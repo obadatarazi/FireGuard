@@ -1,0 +1,16 @@
+
+
+{% block content %}
+    <div class="container my-5 pt-5 text-center wrapper-container">
+        <div class="forget-form-wrapper">
+            <h3>
+                {{ 'passwordSent'|trans }}
+            </h3>
+
+            <p>
+                <span>{{ 'email_was_sent_to_you'|trans }}</span>
+            </p>
+            <p>{{'check_your_spam'|trans}} <a href="{{ path('forgot_password') }}">{{ 'try_again'|trans }}</a>.</p>
+        </div>
+    </div>
+{% endblock %}

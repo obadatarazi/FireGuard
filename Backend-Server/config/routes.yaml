@@ -1,0 +1,19 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+app.swagger_ui:
+    path: /api/doc
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+
+api_admin_login:
+    path: /api/admin/login
+
+api_admin_refresh_token:
+    path: /api/admin/token/refresh
+
+api_fire_brigade_provider_login:
+    path: /api/mobile/login

@@ -1,0 +1,33 @@
+match_password: .كلمة السر غير متطابفة
+incorrect_password: .كلمة المرور غير صحيحة
+one_role_group: .لا يمكن أن يوجد أي عنصر مع مجموعة صلاحيات المستخدم أو البائع
+not_found: .غير قادر على ايجاد العنصر، تأكد من ان المعرف صحيح
+invalid_value: .القيمة المقدمة غير صالحة
+access_denied: .غير مسموح بالوصول
+optimistic_lock_code_error: عذرًا ، لكن شخصًا آخر قد أخذ رموز هذا المنتج بالفعل. يرجى إعادة المحاولة مرة أخرى!
+restrict_deletion: .غير قادر على حذف هذا العنصر، قد يكون متعلق مع بيانات أخرى
+cannot_deleted_your_account: غير قادر على حذف حسابك.
+
+#verfiy email
+"%count% year|%count% years":
+  "سنة %count% | سنة %count% | سنتين %count% | سنوات %count% | سنوات %count% |
+  سنوات %count%"
+"%count% month|%count% months":
+  "شهر %count% | شهر %count% | شهرين %count% | أشهر %count% | أشهر %count% |
+  أشهر %count%"
+"%count% day|%count% days":
+  "يوم %count% | يوم %count% | يومين %count% | أيام %count% | أيام %count% |
+  أيام %count%"
+"%count% hour|%count% hours":
+  "ساعة %count% | ساعة %count% | ساعتين %count% | ساعات %count% | ساعات %count%
+  | ساعات %count%"
+"%count% minute|%count% minutes":
+  "دقيقة %count% | دقيقة %count% | دقيقتين %count% | دقائق %count% | دقائق
+  %count% | دقائق %count%"
+
+please_confirm_your_email: أهلاً! الرجاء تأكيد بريدك الالكترونى!
+confirm_my_email: تأكيد بريدي الإلكتروني
+phone_number_not_found: رقم الهاتف غير موجود.
+admin_access_denied: .غير مسموح بالوصول للادمن
+account_not_active: عذرا حسابك غير فعال يرجى التواصل مع فريق الدعم
+

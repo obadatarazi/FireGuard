@@ -1,0 +1,313 @@
+nelmio_api_doc:
+  documentation:
+    info:
+      title: Fire Managment App
+      description: |
+        Monitors and detects fires using gas, humidity, and temperature sensors.
+
+        **Enumerated values:** Clients should load allowed values from the Options API at runtime.
+        `GET /api/options` returns a map of keys to `{ method, path, description }` for every enum domain.
+        Each specific endpoint returns `{ success, data: [ { label, value }, ... ] }` — use **`value`** in request bodies and query filters.
+
+        | Domain | `GET` endpoint |
+        |--------|----------------|
+        | User gender | `/api/options/users/gender/types` |
+        | Fire status (also fire / task–fire-brigade list filters) | `/api/options/fires/status/types` |
+        | Emergency request status | `/api/options/emergency-requests/status` |
+        | Mobile sensor type | `/api/options/mobile-sensors/types` |
+
+        Inline `enum` lists in this document are illustrative; the Options API is the source of truth.
+      version: 3.2.1
+    components:
+      securitySchemes:
+        Bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+
+      parameters:
+        locale:
+          name: x-locale
+          in: header
+          schema:
+            type: string
+            enum: [en, ar]
+            default: en
+          required: false
+        page:
+          name: page
+          in: query
+          example: 1
+          description: Determine page number.
+          schema:
+            type: integer
+            default: 1
+        limit:
+          name: limit
+          in: query
+          example: 10
+          description: Determine number of items per page.
+          schema:
+            type: integer
+            default: 10
+            enum: [10, 20, 30, 40, 50]
+        sort:
+          name: sort
+          in: query
+          example: alias.attribute
+          description: Sorting results by specified attribute.
+          schema:
+            type: string
+        direction:
+          name: direction
+          in: query
+          example: asc
+          description: Specify sorting order.
+          schema:
+            type: string
+            enum: [asc, desc]
+
+      schemas:
+        Login:
+          type: "object"
+          description: "Symfony json_login expects `username` (admin email or brigade email) and `password`."
+          properties:
+            username:
+              type: "string"
+              example: "admin@admin.com"
+            password:
+              type: "string"
+              example: "test123"
+        RefreshTokenRequest:
+          type: "object"
+          properties:
+            refreshToken:
+              type: "string"
+              description: "Refresh token (matches gesdinet token_parameter_name)"
+        Token:
+          type: "object"
+          properties:
+            token:
+              type: "string"
+
+        UserForm:
+          type: "object"
+          properties:
+            avatar:
+              type: "file"
+              format: "binary"
+            email:
+              type: "string"
+              example: "super@super.com"
+            fullName:
+              type: "string"
+              example: "super man"
+            phoneNumber:
+              type: "integer"
+              example: "1239821903"
+            gender:
+              type: "string"
+              description: "Allowed values from GET /api/options/users/gender/types — use each item's `value`."
+              enum: ["MALE", "FEMALE"]
+              example: "MALE"
+            password:
+              type: "string"
+              example: "Aa198789798*"
+            dateOfBirth:
+              type: "string"
+              example: "01/01/2022"
+            rolesGroups[]:
+              type: "array"
+              items:
+                type: "integer"
+              example: [1]
+
+        UpdateUserForm:
+          type: "object"
+          properties:
+            avatar:
+              type: "file"
+              format: "binary"
+            email:
+              type: "string"
+              example: "super@super.com"
+            fullName:
+              type: "string"
+              example: "super man"
+            phoneNumber:
+              type: "integer"
+              example: "1239821903"
+            gender:
+              type: "string"
+              description: "Allowed values from GET /api/options/users/gender/types — use each item's `value`."
+              enum: ["MALE", "FEMALE"]
+              example: "MALE"
+            password:
+              type: "string"
+              example: "Aa198789798*"
+            dateOfBirth:
+              type: "string"
+              example: "01/01/2022"
+            rolesGroups[]:
+              type: "array"
+              items:
+                type: "integer"
+              example: [1]
+
+        MobileSensorForm:
+          type: "object"
+          description: "Create or update a mobile sensor (multipart/form-data or JSON)."
+          properties:
+            name:
+              type: "string"
+              example: "Drone Alpha"
+            type:
+              type: "string"
+              description: "Allowed values from GET /api/options/mobile-sensors/types — use each item's `value`."
+              enum: ["DRONE", "CAR_ROBOT"]
+              example: "DRONE"
+            status:
+              type: "string"
+              example: "ACTIVE"
+            longitude:
+              type: "string"
+              example: "33.26225"
+            latitude:
+              type: "string"
+              example: "32.62545"
+            center:
+              type: "integer"
+              example: 1
+
+        UpdateProfileForm:
+          type: "object"
+          properties:
+            avatar:
+              type: "file"
+              format: "binary"
+            email:
+              type: "string"
+              example: "super@super.com"
+            fullName:
+              type: "string"
+              example: "super man"
+            address:
+              type: "string"
+              example: "white bridge"
+            phoneNumber:
+              type: "integer"
+              example: "1239821903"
+            gender:
+              type: "string"
+              description: "Allowed values from GET /api/options/users/gender/types — use each item's `value`."
+              enum: ["MALE", "FEMALE"]
+              example: "MALE"
+            password:
+              type: "string"
+              example: "Aa198789798*"
+            dateOfBirth:
+              type: "string"
+              example: "01/01/2022"
+
+    security:
+      - Bearer: []
+
+    paths:
+      /api/mobile/login:
+        post:
+          tags:
+            - Auth Mobile
+          summary: Login Mobile
+          description: Login Mobile
+          requestBody:
+            description: Login Mobile
+            content:
+              multipart/form-data:
+                schema:
+                  $ref: "#/components/schemas/Login"
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Login"
+                example:
+                  { "username": "test@test.com", "password": "Test@123" }
+          responses:
+            200:
+              description: successful operation
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: "your_access_token"
+                      refreshToken:
+                        type: string
+                        example: "your_refresh_token"
+
+      /api/admin/login:
+        post:
+          tags:
+            - Auth
+          summary: Login Admin
+          description: Login Admin
+          requestBody:
+            description: Login Admin
+            content:
+              multipart/form-data:
+                schema:
+                  $ref: "#/components/schemas/Login"
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Login"
+                example:
+                  { "username": "admin@admin.com", "password": "test123" }
+          responses:
+            200:
+              description: successful operation
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: "your_access_token"
+                      refreshToken:
+                        type: string
+                        example: "your_refresh_token"
+
+      /api/admin/token/refresh:
+        post:
+          tags:
+            - Auth
+          summary: Refresh Access Token
+          description: Refresh the access token using the refresh token.
+          requestBody:
+            description: Refresh Token object
+            content:
+              multipart/form-data:
+                schema:
+                  $ref: "#/components/schemas/RefreshTokenRequest"
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/RefreshTokenRequest"
+                example: { "refreshToken": "your_refresh_token_here" }
+          responses:
+            200:
+              description: Access Token Refreshed Successfully
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: "your_access_token"
+                      refreshToken:
+                        type: string
+                        example: "your_refresh_token"
+
+  areas: # to filter documented areas
+    path_patterns:
+      - ^/api(?!/doc$) # Accepts routes under /api except /api/doc

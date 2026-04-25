@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+      This file is served as the site root (/) when present in public/.
+      Symfony's .htaccess only rewrites to index.php when the requested path is NOT an existing file,
+      so /api/*, /api/doc, and other routes still hit index.php and work as before.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fire Guard — Forest fire monitoring & response coordination</title>
+    <meta name="description" content="Fire Guard connects sensors, an operations dashboard, and a mobile app for fire brigades to detect, track, and respond to forest fires. Based in Damascus, Syria.">
+    <link rel="canonical" href="https://fireguard-sy.online/">
+    <meta property="og:title" content="Fire Guard — Forest fire monitoring">
+    <meta property="og:description" content="Real-time alerts, dispatch, and field coordination for forest fire response.">
+    <meta property="og:url" content="https://fireguard-sy.online/">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --bg-card: #1e293b;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --accent: #f97316;
+            --accent-dim: #ea580c;
+            --border: #334155;
+            --radius: 12px;
+            --max: 1100px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: "Inter", system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+            gap: 1rem;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo span { color: var(--accent); }
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            align-items: center;
+        }
+        nav a { color: var(--muted); font-weight: 500; font-size: 0.95rem; }
+        nav a:hover { color: var(--text); text-decoration: none; }
+        .nav-toggle {
+            display: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 720px) {
+            .nav-toggle { display: block; }
+            nav { width: 100%; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem 0 0;
+                width: 100%;
+            }
+            nav.open ul { display: flex; }
+        }
+        .hero {
+            padding: 4rem 0 5rem;
+            background: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(249, 115, 22, 0.18), transparent);
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+        .hero .tagline-ar {
+            font-size: 1.05rem;
+            color: var(--muted);
+            margin-bottom: 1.25rem;
+            direction: rtl;
+        }
+        .hero p.lead {
+            font-size: 1.125rem;
+            color: var(--muted);
+            max-width: 36rem;
+            margin-bottom: 2rem;
+        }
+        .cta-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.35rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .btn-primary {
+            background: linear-gradient(180deg, var(--accent), var(--accent-dim));
+            color: #fff;
+            border: none;
+            box-shadow: 0 4px 20px rgba(249, 115, 22, 0.35);
+        }
+        .btn-primary:hover { filter: brightness(1.05); text-decoration: none; }
+        .btn-ghost {
+            border: 1px solid var(--border);
+            color: var(--text);
+            background: transparent;
+        }
+        .btn-ghost:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+        section { padding: 4rem 0; }
+        section:nth-child(even) { background: #0c1222; }
+        h2 {
+            font-size: 1.65rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        .section-intro { color: var(--muted); max-width: 40rem; margin-bottom: 2rem; }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+        }
+        .card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text); }
+        .card p { color: var(--muted); font-size: 0.95rem; }
+        .step-num {
+            display: inline-flex;
+            width: 2rem;
+            height: 2rem;
+            align-items: center;
+            justify-content: center;
+            background: rgba(249, 115, 22, 0.2);
+            color: var(--accent);
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+        .how-steps { display: grid; gap: 1rem; }
+        @media (min-width: 768px) {
+            .how-steps { grid-template-columns: repeat(2, 1fr); }
+        }
+        .contact-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            max-width: 32rem;
+        }
+        .contact-box dl { display: grid; gap: 1rem; }
+        .contact-box dt { color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+        .contact-box dd { font-size: 1.05rem; }
+        footer {
+            padding: 2rem 0 3rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+        footer .domain { color: var(--accent); font-weight: 500; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="wrap header-inner">
+            <a href="#" class="logo" aria-label="Fire Guard home">Fire <span>Guard</span></a>
+            <button type="button" class="nav-toggle" aria-label="Toggle menu" id="navToggle">Menu</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#about">What it is</a></li>
+                    <li><a href="#how">How it works</a></li>
+                    <li><a href="#audience">Who it is for</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="wrap">
+                <h1>Forest fire monitoring &amp; response coordination</h1>
+                <p class="tagline-ar">حماية الغابات والتنسيق بين غرف العمليات والفرق الميدانية</p>
+                <p class="lead">
+                    Fire Guard is a platform that connects environmental sensing, an operations dashboard,
+                    and a mobile app for fire brigades—so your team can see incidents early, assign tasks,
+                    and act with a shared picture of the ground.
+                </p>
+                <div class="cta-row">
+                    <a class="btn btn-primary" href="#contact">Get in touch</a>
+                    <a class="btn btn-ghost" href="#how">See how it works</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="wrap">
+                <h2>What it is</h2>
+                <p class="section-intro">
+                    Fire Guard brings together a <strong>Symfony backend API</strong>, a <strong>web dashboard</strong>
+                    for monitoring centers, and a <strong>mobile application</strong> for field teams. Sensors and
+                    devices feed data about heat, moisture, and gas in forest areas. When risk rises, operators
+                    see alerts on a map, manage centers and assets, and dispatch tasks to brigades—who then use
+                    the mobile app to accept missions, navigate to incidents, and update status in real time.
+                </p>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>Operations dashboard</h3>
+                        <p>Maps, fires, devices, brigades, and history in one place for dispatch and oversight.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Field mobile app</h3>
+                        <p>Brigades sign in securely, view assigned tasks, and report from the location of the event.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Backend &amp; API</h3>
+                        <p>A unified API powers authentication, data, and integrations for web and mobile clients.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how">
+            <div class="wrap">
+                <h2>How it works</h2>
+                <p class="section-intro">From sensor signal to coordinated response in four steps.</p>
+                <div class="how-steps">
+                    <div class="card">
+                        <div class="step-num">1</div>
+                        <h3>Detection &amp; sensing</h3>
+                        <p>Devices in forest zones report environmental readings. Unusual patterns help surface potential fire risk.</p>
+                    </div>
+                    <div class="card">
+                        <div class="step-num">2</div>
+                        <h3>Visibility on the dashboard</h3>
+                        <p>Your operations center sees incidents, geography, and resources on a map and in structured lists.</p>
+                    </div>
+                    <div class="card">
+                        <div class="step-num">3</div>
+                        <h3>Dispatch &amp; tasks</h3>
+                        <p>Operators assign work to fire brigades and track progress from assignment through completion.</p>
+                    </div>
+                    <div class="card">
+                        <div class="step-num">4</div>
+                        <h3>Brigade execution</h3>
+                        <p>Teams use the mobile app to open tasks, navigate, request help when needed, and update status on site.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="audience">
+            <div class="wrap">
+                <h2>Who it is for</h2>
+                <p class="section-intro">
+                    Fire Guard is built for <strong>operations centers</strong> coordinating forest coverage,
+                    <strong>fire brigades</strong> working in the field, and <strong>forest and civil protection</strong>
+                    organizations that need a single operational view across sensors, people, and incidents.
+                </p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="wrap">
+                <h2>Contact</h2>
+                <p class="section-intro">Reach us in Syria—we are happy to discuss deployment and partnerships.</p>
+                <div class="contact-box">
+                    <dl>
+                        <dt>Website</dt>
+                        <dd><a href="http://fireguard-sy.online/">fireguard-sy.online</a></dd>
+                        <dt>Phone</dt>
+                        <dd><a href="tel:+963947857490">+963 947 857 490</a></dd>
+                        <dt>Location</dt>
+                        <dd>Damascus, Syria</dd>
+                    </dl>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <p><span class="domain">fireguard-sy.online</span> — Fire Guard. Damascus, Syria.</p>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var btn = document.getElementById("navToggle");
+            var nav = document.getElementById("mainNav");
+            if (btn && nav) {
+                btn.addEventListener("click", function () {
+                    nav.classList.toggle("open");
+                });
+                nav.querySelectorAll("a").forEach(function (a) {
+                    a.addEventListener("click", function () { nav.classList.remove("open"); });
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

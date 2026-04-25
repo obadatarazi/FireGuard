@@ -1,0 +1,15 @@
+duplicate_email: The email is already used.
+duplicate_phone_number: The phone number is already used.
+duplicate_currency_code: The currency code is already used.
+duplicate_currency_symbol: The currency symbol is already used.
+min_digits_exceed: The ditgits length is less than expected.
+max_digits_exceed: The ditgits length is greater than expected.
+invalid_phone_number: Your phone number cannot contain a character.
+invalid_password: The password must contain numbers, small letters.
+duplicate_name: The name is already used.
+duplicate_area_name: The name area is already used.
+duplicate_governorate_name: The name governorate is already used.
+duplicate_identity_restriction: The identity restriction is already used.
+duplicate_national_number: The national number is already used.
+duplicate_number_plate: The number plate is already used.
+duplicate_device_name: The name of device is already used.

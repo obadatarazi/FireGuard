@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fireguard-demo-data version="1">
+    <!-- Roles: one new group + reference to seeded SUPER_ADMIN (id resolved at import) -->
+    <roles_groups>
+        <roles_group ref="rg-demo" name="Demo Operator" identifier="DEMO_OPERATOR" standard="0">
+            <role>ACCESS_TO_DASHBOARD</role>
+            <role>ROLE_CENTER_LIST</role>
+            <role>ROLE_CENTER_SHOW</role>
+            <role>ROLE_FOREST_LIST</role>
+            <role>ROLE_FOREST_SHOW</role>
+            <role>ROLE_DEVICE_LIST</role>
+            <role>ROLE_DEVICE_SHOW</role>
+            <role>ROLE_FIRE_LIST</role>
+            <role>ROLE_FIRE_SHOW</role>
+            <role>ROLE_CAR_LIST</role>
+            <role>ROLE_CAR_SHOW</role>
+            <role>ROLE_FIRE_BRIGADE_LIST</role>
+            <role>ROLE_FIRE_BRIGADE_SHOW</role>
+            <role>ROLE_EMERGENCY_REQUEST_LIST</role>
+            <role>ROLE_MOBILE_SENSOR_LIST</role>
+        </roles_group>
+        <roles_group ref="rg-super" existing_identifier="SUPER_ADMIN"/>
+    </roles_groups>
+
+    <users>
+        <user ref="u1" email="demo.operator1@fireguard.local" fullName="Omar Al-Halabi" phoneNumber="+963947100001"
+              password="Demo123456" gender="MALE" dateOfBirth="1991-05-12" rolesGroupRef="rg-demo"/>
+        <user ref="u2" email="demo.operator2@fireguard.local" fullName="Layla Mansour" phoneNumber="+963947100002"
+              password="Demo123456" gender="FEMALE" dateOfBirth="1993-08-22" rolesGroupRef="rg-demo"/>
+        <user ref="u3" email="demo.viewer@fireguard.local" fullName="Khaled Barakat" phoneNumber="+963947100003"
+              password="Demo123456" gender="MALE" dateOfBirth="1988-11-30" rolesGroupRef="rg-super"/>
+    </users>
+
+    <centers>
+        <center ref="c1" name="Damascus Civil Defense Hub" description="Main coordination for Greater Damascus"
+                phoneNumber="+963112200101" status="ACTIVE" longitude="36.2765" latitude="33.5138"
+                nameAddress="Mezzeh, Damascus"/>
+        <center ref="c2" name="Aleppo Regional Command" description="Northern Syria monitoring and response"
+                phoneNumber="+963212200202" status="ACTIVE" longitude="37.1562" latitude="36.2021"
+                nameAddress="Al-Orouba, Aleppo"/>
+        <center ref="c3" name="Homs Monitoring Station" description="Central corridor sensor oversight"
+                phoneNumber="+963312200303" status="ACTIVE" longitude="36.7061" latitude="34.7324"
+                nameAddress="Baba Amr, Homs"/>
+        <center ref="c4" name="Latakia Coastal Command" description="Coastal forest and port vicinity"
+                phoneNumber="+963412200404" status="ACTIVE" longitude="35.7832" latitude="35.5176"
+                nameAddress="Cassab Street, Latakia"/>
+        <center ref="c5" name="Daraa Governorate Coordination" description="Southern sector coordination"
+                phoneNumber="+963152200505" status="ACTIVE" longitude="36.2919" latitude="32.6189"
+                nameAddress="Naima, Daraa"/>
+        <center ref="c6" name="Tartus Support Center" description="Logistics and backup dispatch"
+                phoneNumber="+963432200606" status="ACTIVE" longitude="35.8866" latitude="34.8897"
+                nameAddress="Tartus Port area"/>
+    </centers>
+
+    <forests>
+        <forest ref="f1" name="Al-Fijeh Forest Belt" description="Pine and oak mix near Damascus water basin"
+                longitude="36.2200" latitude="33.6800" nameAddress="Barada valley"/>
+        <forest ref="f2" name="Qalamoun Pine Ridge" description="Elevated ridge monitoring strip"
+                longitude="36.4500" latitude="34.1200" nameAddress="Rankous vicinity"/>
+        <forest ref="f3" name="Aleppo Steppe Green Strip" description="Dryland transition zone"
+                longitude="37.0500" latitude="36.0800" nameAddress="Safira road"/>
+        <forest ref="f4" name="Homs Orchards Corridor" description="Irrigated groves and brush"
+                longitude="36.6500" latitude="34.8500" nameAddress="Talkalakh side"/>
+        <forest ref="f5" name="Latakia Mountain Slope" description="Steep slope humidity sensors"
+                longitude="35.9200" latitude="35.6500" nameAddress="Kesab approach"/>
+        <forest ref="f6" name="Daraa Olive Groves" description="Southern olive belt"
+                longitude="36.1000" latitude="32.7500" nameAddress="Izra road"/>
+    </forests>
+
+    <devices>
+        <device ref="d1" name="GLOBAL-SENSOR-DMS-01" description="Gateway cluster A" forestRef="f1"
+                longitude="36.2210" latitude="33.6810" nameAddress="Al-Fijeh north"/>
+        <device ref="d2" name="GLOBAL-SENSOR-DMS-02" description="Gateway cluster B" forestRef="f2"
+                longitude="36.4510" latitude="34.1210" nameAddress="Qalamoun east"/>
+        <device ref="d3" name="GLOBAL-SENSOR-DMS-03" description="Gateway cluster C" forestRef="f3"
+                longitude="37.0510" latitude="36.0810" nameAddress="Aleppo south"/>
+        <device ref="d4" name="GLOBAL-SENSOR-DMS-04" description="Gateway cluster D" forestRef="f4"
+                longitude="36.6510" latitude="34.8510" nameAddress="Homs west"/>
+        <device ref="d5" name="GLOBAL-SENSOR-DMS-05" description="Gateway cluster E" forestRef="f5"
+                longitude="35.9210" latitude="35.6510" nameAddress="Latakia upland"/>
+        <device ref="d6" name="GLOBAL-SENSOR-DMS-06" description="Gateway cluster F" forestRef="f6"
+                longitude="36.1010" latitude="32.7510" nameAddress="Daraa east"/>
+    </devices>
+
+    <fires>
+        <fire ref="fire1" status="INPROGRESS" forestRef="f1" deviceRef="d1"/>
+        <fire ref="fire2" status="ONFIRE" forestRef="f2" deviceRef="d2"/>
+        <fire ref="fire3" status="INPROGRESS" forestRef="f3" deviceRef="d3"/>
+        <fire ref="fire4" status="COMPLETED" forestRef="f4" deviceRef="d4"/>
+        <fire ref="fire5" status="CANCELED" forestRef="f5" deviceRef="d5"/>
+        <fire ref="fire6" status="ONFIRE" forestRef="f6" deviceRef="d6"/>
+    </fires>
+
+    <fire_brigades>
+        <fire_brigade ref="fb1" name="Damascus Squad A" centerRef="c1" numberOfTeam="12"
+                      email="demo.fb.damascus@fireguard.local" password="Brigade123"/>
+        <fire_brigade ref="fb2" name="Aleppo Squad B" centerRef="c2" numberOfTeam="15"
+                      email="demo.fb.aleppo@fireguard.local" password="Brigade123"/>
+        <fire_brigade ref="fb3" name="Homs Squad C" centerRef="c3" numberOfTeam="10"
+                      email="demo.fb.homs@fireguard.local" password="Brigade123"/>
+        <fire_brigade ref="fb4" name="Latakia Squad D" centerRef="c4" numberOfTeam="9"
+                      email="demo.fb.latakia@fireguard.local" password="Brigade123"/>
+        <fire_brigade ref="fb5" name="Daraa Squad E" centerRef="c5" numberOfTeam="8"
+                      email="demo.fb.daraa@fireguard.local" password="Brigade123"/>
+    </fire_brigades>
+
+    <cars>
+        <car ref="car1" name="Kia Rio" model="Rio" numberPlate="DMS0000001" centerRef="c1"/>
+        <car ref="car2" name="Hyundai Tucson" model="Tucson" numberPlate="DMS0000002" centerRef="c2"/>
+        <car ref="car3" name="Toyota Hilux" model="Hilux" numberPlate="DMS0000003" centerRef="c3"/>
+        <car ref="car4" name="Nissan Patrol" model="Patrol" numberPlate="DMS0000004" centerRef="c4"/>
+        <car ref="car5" name="Mercedes Sprinter" model="Sprinter" numberPlate="DMS0000005" centerRef="c5"/>
+        <car ref="car6" name="Isuzu D-Max" model="D-Max" numberPlate="DMS0000006" centerRef="c6"/>
+    </cars>
+
+    <mobile_sensors>
+        <mobile_sensor ref="ms1" name="Drone Alpha-1" type="DRONE" status="ACTIVE" longitude="36.2700"
+                       latitude="33.5200" lastSeenAt="2026-03-25T10:00:00+00:00" centerRef="c1"/>
+        <mobile_sensor ref="ms2" name="Car Robot Beta" type="CAR_ROBOT" status="ACTIVE" longitude="37.1600"
+                       latitude="36.2100" lastSeenAt="2026-03-25T10:15:00+00:00" centerRef="c2"/>
+        <mobile_sensor ref="ms3" name="Drone Gamma" type="DRONE" status="IDLE" longitude="36.7100"
+                       latitude="34.7400" lastSeenAt="2026-03-25T09:45:00+00:00" centerRef="c3"/>
+        <mobile_sensor ref="ms4" name="Car Robot Delta" type="CAR_ROBOT" status="ACTIVE" longitude="35.7900"
+                       latitude="35.5200" lastSeenAt="2026-03-25T11:00:00+00:00" centerRef="c4"/>
+        <mobile_sensor ref="ms5" name="Drone Epsilon" type="DRONE" status="MAINTENANCE" longitude="36.3000"
+                       latitude="32.6200" lastSeenAt="2026-03-24T18:00:00+00:00" centerRef="c5"/>
+        <mobile_sensor ref="ms6" name="Car Robot Zeta" type="CAR_ROBOT" status="ACTIVE" longitude="35.8900"
+                       latitude="34.9000" lastSeenAt="2026-03-25T08:30:00+00:00" centerRef="c6"/>
+    </mobile_sensors>
+
+    <device_values>
+        <device_value ref="dv1" valueHeat="42.5" valueMoisture="18.2" valueGas="0.04" date="2026-03-25T08:00:00+00:00"
+                      status="NORMAL" deviceRef="d1"/>
+        <device_value ref="dv2" valueHeat="38.1" valueMoisture="22.0" valueGas="0.02" date="2026-03-25T09:00:00+00:00"
+                      status="NORMAL" deviceRef="d2"/>
+        <device_value ref="dv3" valueHeat="55.0" valueMoisture="12.5" valueGas="0.11" date="2026-03-25T09:30:00+00:00"
+                      status="ALERT" deviceRef="d3"/>
+        <device_value ref="dv4" valueHeat="31.2" valueMoisture="30.1" valueGas="0.01" date="2026-03-25T07:45:00+00:00"
+                      status="NORMAL" deviceRef="d4"/>
+        <device_value ref="dv5" valueHeat="44.0" valueMoisture="19.0" valueGas="0.05" date="2026-03-25T10:10:00+00:00"
+                      status="NORMAL" deviceRef="d5"/>
+        <device_value ref="dv6" valueHeat="47.3" valueMoisture="16.8" valueGas="0.07" date="2026-03-25T10:20:00+00:00"
+                      status="WARN" deviceRef="d6"/>
+        <device_value ref="dv7" valueHeat="39.9" valueMoisture="21.3" valueGas="0.03" date="2026-03-25T11:00:00+00:00"
+                      status="NORMAL" deviceRef="d1"/>
+        <device_value ref="dv8" valueHeat="52.4" valueMoisture="14.1" valueGas="0.09" date="2026-03-25T11:15:00+00:00"
+                      status="ALERT" deviceRef="d2"/>
+    </device_values>
+
+    <task_fire_brigades>
+        <task_fire_brigade ref="tfb1" note="First response dispatched" status="INPROGRESS" fireBrigadeRef="fb1"
+                           fireRef="fire1"/>
+        <task_fire_brigade ref="tfb2" note="Cooling perimeter" status="ONFIRE" fireBrigadeRef="fb2"
+                           fireRef="fire2"/>
+        <task_fire_brigade ref="tfb3" note="Sector cleared" status="COMPLETED" fireBrigadeRef="fb3"
+                           fireRef="fire3"/>
+        <task_fire_brigade ref="tfb4" note="Standby rotation" status="INPROGRESS" fireBrigadeRef="fb4"
+                           fireRef="fire4"/>
+        <task_fire_brigade ref="tfb5" note="False alarm closed" status="CANCELED" fireBrigadeRef="fb5"
+                           fireRef="fire5"/>
+    </task_fire_brigades>
+
+    <emergency_requests>
+        <emergency_request ref="er1" status="DANGEROUS" centerRef="c1" fireRef="fire1" fireBrigadeRef="fb1"/>
+        <emergency_request ref="er2" status="DONE" centerRef="c2" fireRef="fire2" fireBrigadeRef="fb2"/>
+        <emergency_request ref="er3" status="DANGEROUS" centerRef="c3" fireRef="fire3" fireBrigadeRef="fb3"/>
+        <emergency_request ref="er4" status="DONE" centerRef="c4" fireRef="fire4" fireBrigadeRef="fb4"/>
+    </emergency_requests>
+
+    <addresses>
+        <address ref="a1" longitude="36.2925" latitude="33.5142"/>
+        <address ref="a2" longitude="37.1610" latitude="36.2030"/>
+        <address ref="a3" longitude="36.7180" latitude="34.7350"/>
+        <address ref="a4" longitude="35.7950" latitude="35.5180"/>
+        <address ref="a5" longitude="36.2850" latitude="32.6250"/>
+        <address ref="a6" longitude="35.8880" latitude="34.8920"/>
+    </addresses>
+</fireguard-demo-data>

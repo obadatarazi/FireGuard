@@ -1,0 +1,13 @@
+Gender:
+  Male: ذكر
+  Female: أنثى
+  
+FireStatus:
+  Completed: تمت المهمة بنجاح
+  OnFire: المكان يوجد فيه حريق
+  InProgress: قيد الاطفاء
+  Canceled: طلب الغاء الحريق ملغى
+  
+EmergencyRequestStatus:
+  Dangerous: حالة خطر
+  Done: حالة امان
